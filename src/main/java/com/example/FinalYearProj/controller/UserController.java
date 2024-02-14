@@ -22,4 +22,5 @@ public class UserController {
         log.info("Received a request  to register a user. Payload received:{}",userDTO);
         return userServices.register(userDTO);
     }
+
 }
