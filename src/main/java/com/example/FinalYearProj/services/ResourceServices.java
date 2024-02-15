@@ -55,4 +55,9 @@ public class ResourceServices {
         GradeEntity gradeEntity = gradeRepo.FindByGradeId(gradeId);
         return Utilities.createSuccessfulResponse("Successfully fetched one grade",gradeEntity);
     }
+
+    public static ResponseDTO getGrades() {
+        List<GradeEntity> gradeEntityList = gradeRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully fetched all grades",gradeEntityList);
+    }
 }

@@ -32,5 +32,9 @@ public class ResourceController {
     public ResponseDTO getGradeById(@PathVariable long gradeId){
         return ResourceServices.getGradeById(gradeId);
     }
+    @GetMapping("/grades")
+    public ResponseDTO getGrades(){
+        return ResourceServices.getGrades();
+    }
 
 }
