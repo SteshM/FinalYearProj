@@ -4,10 +4,13 @@ import com.example.FinalYearProj.Utilities.Utilities;
 import com.example.FinalYearProj.dto.GradeDTO;
 import com.example.FinalYearProj.dto.LevelDTO;
 import com.example.FinalYearProj.dto.ResponseDTO;
+import com.example.FinalYearProj.dto.SubjectDTO;
 import com.example.FinalYearProj.entities.GradeEntity;
 import com.example.FinalYearProj.entities.LevelEntity;
+import com.example.FinalYearProj.entities.SubjectEntity;
 import com.example.FinalYearProj.repos.GradeRepo;
 import com.example.FinalYearProj.repos.LevelRepo;
+import com.example.FinalYearProj.repos.SubjectRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ public class ResourceServices {
 
   private static LevelRepo levelRepo;
   private static GradeRepo gradeRepo;
+  private static SubjectRepo subjectRepo;
 
     public static ResponseDTO createLevel(LevelDTO levelDTO) {
         LevelEntity levelEntity = new LevelEntity();
@@ -59,5 +63,12 @@ public class ResourceServices {
     public static ResponseDTO getGrades() {
         List<GradeEntity> gradeEntityList = gradeRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all grades",gradeEntityList);
+    }
+
+    public static ResponseDTO createSubject(SubjectDTO subjectDTO) {
+        SubjectEntity subjectEntity = new SubjectEntity();
+        subjectEntity.setSubjectName(subjectDTO.getSubjectName());
+        SubjectEntity createdSubject = subjectRepo.save(subjectEntity);
+        return Utilities.createSuccessfulResponse("Successfully created a subject",createdSubject);
     }
 }
