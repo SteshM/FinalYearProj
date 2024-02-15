@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1/Resource")
+@RequestMapping("/v1/resource")
 public class ResourceController {
     @PostMapping("/level")
     public ResponseDTO createLevel(@RequestBody LevelDTO levelDTO){
@@ -18,5 +18,9 @@ public class ResourceController {
     @GetMapping("/getlevel{levelId}")
     public ResponseDTO getLevelById(@PathVariable long levelId){
         return ResourceServices.getLevelById(levelId);
+    }
+    @GetMapping("/levels")
+    public ResponseDTO getLevels(){
+        return ResourceServices.getLevels();
     }
 }

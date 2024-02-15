@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -30,5 +32,10 @@ public class ResourceServices {
                 return Utilities.createSuccessfulResponse("successfully retrieved levels",levelEntity);
 
 
+    }
+
+    public static ResponseDTO getLevels() {
+        List<LevelEntity> levelEntityList = levelRepo.findAll();
+        return Utilities.createSuccessfulResponse("successfully fetched all levels",levelEntityList);
     }
 }
