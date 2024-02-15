@@ -50,4 +50,9 @@ public class ResourceServices {
         return Utilities.createSuccessfulResponse("Successfully created Grade",createdGrade);
 
     }
+
+    public static ResponseDTO getGradeById(long gradeId) {
+        GradeEntity gradeEntity = gradeRepo.FindByGradeId(gradeId);
+        return Utilities.createSuccessfulResponse("Successfully fetched one grade",gradeEntity);
+    }
 }
