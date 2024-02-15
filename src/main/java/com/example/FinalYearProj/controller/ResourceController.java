@@ -4,10 +4,7 @@ import com.example.FinalYearProj.dto.LevelDTO;
 import com.example.FinalYearProj.dto.ResponseDTO;
 import com.example.FinalYearProj.services.ResourceServices;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -17,5 +14,9 @@ public class ResourceController {
     public ResponseDTO createLevel(@RequestBody LevelDTO levelDTO){
         log.info("Received a payload to create a level.payload received:{}",levelDTO);
         return ResourceServices.createLevel(levelDTO);
+    }
+    @GetMapping("/getlevel{levelId}")
+    public ResponseDTO getLevelById(@PathVariable long levelId){
+        return ResourceServices.getLevelById(levelId);
     }
 }

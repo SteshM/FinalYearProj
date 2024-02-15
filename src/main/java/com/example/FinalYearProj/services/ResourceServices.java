@@ -24,4 +24,11 @@ public class ResourceServices {
         LevelEntity createdLevel = levelRepo.save(levelEntity);
         return Utilities.createSuccessfulResponse("successfully created a level",createdLevel);
     }
+
+    public static ResponseDTO getLevelById(long levelId) {
+        LevelEntity levelEntity = levelRepo.findBylevelId(levelId);
+                return Utilities.createSuccessfulResponse("successfully retrieved levels",levelEntity);
+
+
+    }
 }
