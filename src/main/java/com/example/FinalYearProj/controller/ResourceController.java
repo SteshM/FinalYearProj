@@ -1,5 +1,6 @@
 package com.example.FinalYearProj.controller;
 
+import com.example.FinalYearProj.dto.GradeDTO;
 import com.example.FinalYearProj.dto.LevelDTO;
 import com.example.FinalYearProj.dto.ResponseDTO;
 import com.example.FinalYearProj.services.ResourceServices;
@@ -22,5 +23,9 @@ public class ResourceController {
     @GetMapping("/levels")
     public ResponseDTO getLevels(){
         return ResourceServices.getLevels();
+    }
+    @PostMapping("/grade")
+    public ResponseDTO createGrade(@RequestBody GradeDTO gradeDTO){
+        return ResourceServices.createGrade(gradeDTO);
     }
 }
