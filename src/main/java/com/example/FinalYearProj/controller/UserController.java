@@ -27,5 +27,11 @@ public class UserController {
     public ResponseDTO createUserType(@RequestBody UserTypeDTO userTypeDTO){
         return userServices.createUserTypes(userTypeDTO);
     }
+    @GetMapping("/getUserTypes")
+    public ResponseDTO getUserTypes(){
+        return userServices.fetchUserTypes();
+    }
+
+
 
 }

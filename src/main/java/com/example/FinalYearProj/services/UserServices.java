@@ -9,8 +9,12 @@ import com.example.FinalYearProj.entities.UserTypeEntity;
 import com.example.FinalYearProj.repos.UserRepo;
 import com.example.FinalYearProj.repos.UserTypeRepo;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -18,6 +22,8 @@ public class UserServices {
  @Autowired
  UserRepo userRepo;
  UserTypeRepo userTypeRepo;
+
+
 
     public ResponseDTO register(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
@@ -36,5 +42,25 @@ public class UserServices {
         userTypeEntity.setUserTypeName(userTypeDTO.getUserTypeName());
         UserTypeEntity createdUserType = userTypeRepo.save(userTypeEntity);
         return Utilities.createSuccessfulResponse("Successfully created a UserType",createdUserType);
+    }
+
+    public ResponseDTO fetchUserTypes() {
+        List<UserTypeEntity> userTypes = userTypeRepo.findAll();
+        List<UserTypeDTO> userTypeDTOList = new ArrayList<>();
+
+        userTypes.forEach(
+                userTypeEntity -> {
+                    UserTypeDTO userTypeDTO = new UserTypeDTO();
+                    userTypeDTO.setUserTypeId(userTypeEntity.getUserTypeId());
+                    userTypeDTO.setUserTypeName(userTypeEntity.getUserTypeName());
+                    userTypeDTOList.add(userTypeDTO);
+                }
+
+        );
+        log.info("Get {} user types", userTypeDTOList.size());
+        return Utilities.createSuccessfulResponse("successfully fetched user types", userTypeDTOList);
+
+
+
     }
 }
