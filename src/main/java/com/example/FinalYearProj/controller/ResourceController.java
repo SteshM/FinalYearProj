@@ -1,9 +1,6 @@
 package com.example.FinalYearProj.controller;
 
-import com.example.FinalYearProj.dto.GradeDTO;
-import com.example.FinalYearProj.dto.LevelDTO;
-import com.example.FinalYearProj.dto.ResponseDTO;
-import com.example.FinalYearProj.dto.SubjectDTO;
+import com.example.FinalYearProj.dto.*;
 import com.example.FinalYearProj.services.ResourceServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +46,9 @@ public class ResourceController {
     public ResponseDTO getSubjectById(@PathVariable long subjectId){
         return ResourceServices.getSubjectById(subjectId);
 }
+@PostMapping("/createLesson")
+    public ResponseDTO createLesson(@RequestBody LessonDTO lessonDTO){
+        return ResourceServices.createLesson(lessonDTO);
+}
+
 }

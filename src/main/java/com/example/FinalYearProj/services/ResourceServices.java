@@ -1,19 +1,17 @@
 package com.example.FinalYearProj.services;
 
 import com.example.FinalYearProj.Utilities.Utilities;
-import com.example.FinalYearProj.dto.GradeDTO;
-import com.example.FinalYearProj.dto.LevelDTO;
-import com.example.FinalYearProj.dto.ResponseDTO;
-import com.example.FinalYearProj.dto.SubjectDTO;
+import com.example.FinalYearProj.dto.*;
 import com.example.FinalYearProj.entities.GradeEntity;
+import com.example.FinalYearProj.entities.LessonEntity;
 import com.example.FinalYearProj.entities.LevelEntity;
 import com.example.FinalYearProj.entities.SubjectEntity;
 import com.example.FinalYearProj.repos.GradeRepo;
+import com.example.FinalYearProj.repos.LessonRepo;
 import com.example.FinalYearProj.repos.LevelRepo;
 import com.example.FinalYearProj.repos.SubjectRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +24,7 @@ public class ResourceServices {
   private static LevelRepo levelRepo;
   private static GradeRepo gradeRepo;
   private static SubjectRepo subjectRepo;
+  private static LessonRepo lessonRepo;
 
     public static ResponseDTO createLevel(LevelDTO levelDTO) {
         LevelEntity levelEntity = new LevelEntity();
@@ -81,5 +80,14 @@ public class ResourceServices {
         SubjectEntity subjectEntity = subjectRepo.findById(subjectId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched a subject by its Id", subjectEntity);
 
+    }
+
+    public static ResponseDTO createLesson(LessonDTO lessonDTO) {
+        LessonEntity lessonEntity = new LessonEntity();
+        lessonEntity.setLessonName(lessonDTO.getLessonName());
+        lessonEntity.setLessonDescription(lessonDTO.getLessonDescription());
+        lessonEntity.setDuration(lessonDTO.getDuration());
+        LessonEntity createdLesson = lessonRepo.save(lessonEntity);
+        return  Utilities.createSuccessfulResponse("Successfully created a lesson", createdLesson);
     }
 }
