@@ -62,5 +62,9 @@ public class ResourceController {
     public ResponseDTO createTopic(@RequestBody TopicDTO topicDTO){
         return ResourceServices.createTopic(topicDTO);
 }
+@GetMapping("/topics")
+    public ResponseDTO getTopics(){
+        return ResourceServices.getTopics();
+}
 
 }

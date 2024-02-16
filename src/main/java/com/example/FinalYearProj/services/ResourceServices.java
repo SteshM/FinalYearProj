@@ -102,4 +102,9 @@ public class ResourceServices {
         TopicEntity createdTopic = topicRepo.save(topicEntity);
         return Utilities.createSuccessfulResponse("Successfully created a topic",createdTopic);
     }
+
+    public static ResponseDTO getTopics() {
+        List<TopicEntity>topicEntityList = topicRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully fetched all topics",topicEntityList);
+    }
 }
