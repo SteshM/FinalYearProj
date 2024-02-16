@@ -107,4 +107,9 @@ public class ResourceServices {
         List<TopicEntity>topicEntityList = topicRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all topics",topicEntityList);
     }
+
+    public static ResponseDTO getTopicById(long topicId) {
+        TopicEntity topicEntity = topicRepo.findById(topicId).get();
+        return Utilities.createSuccessfulResponse("Successfully fetched topic by Id",topicEntity);
+    }
 }

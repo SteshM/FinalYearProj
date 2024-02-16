@@ -66,5 +66,8 @@ public class ResourceController {
     public ResponseDTO getTopics(){
         return ResourceServices.getTopics();
 }
-
+@GetMapping("/getTopic{topicId}")
+public ResponseDTO getTopicById(@PathVariable long topicId){
+        return ResourceServices.getTopicById(topicId);
+}
 }
