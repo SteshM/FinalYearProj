@@ -54,5 +54,9 @@ public class ResourceController {
     public ResponseDTO getLessons(){
         return ResourceServices.getLessons();
 }
+@GetMapping("/getLesson{lessonId}")
+    public ResponseDTO getLessonsById(@PathVariable long lessonId){
+        return ResourceServices.getLessonById(lessonId);
+}
 
 }

@@ -95,4 +95,9 @@ public class ResourceServices {
        List<LessonEntity>  lessonEntityList = lessonRepo.findAll();
        return Utilities.createSuccessfulResponse("Successfully fetched all lessons",lessonEntityList);
     }
+
+    public static ResponseDTO getLessonById(long lessonId) {
+        LessonEntity lessonEntity = lessonRepo.findById(lessonId).get();
+        return Utilities.createSuccessfulResponse("Successfully fetched a lesson",lessonEntity);
+    }
 }
