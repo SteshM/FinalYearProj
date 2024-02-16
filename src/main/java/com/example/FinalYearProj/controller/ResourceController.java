@@ -78,4 +78,8 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO getContent(){
         return ResourceServices.getContent();
 }
+@GetMapping("/getContent{contentId}")
+    public ResponseDTO getContentById(@PathVariable long contentId){
+        return ResourceServices.getContentById(contentId);
+}
 }

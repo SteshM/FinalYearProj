@@ -126,4 +126,9 @@ public class ResourceServices {
         List<ContentEntity> contentEntityList = contentRepo.findAll();
         return Utilities.createSuccessfulResponse("successfully fetched content",contentEntityList);
     }
+
+    public static ResponseDTO getContentById(long contentId) {
+        ContentEntity contentEntity = contentRepo.findById(contentId).get();
+        return Utilities.createSuccessfulResponse("successfully fetched content by Id",contentEntity);
+    }
 }
