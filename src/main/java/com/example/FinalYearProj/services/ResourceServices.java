@@ -71,4 +71,9 @@ public class ResourceServices {
         SubjectEntity createdSubject = subjectRepo.save(subjectEntity);
         return Utilities.createSuccessfulResponse("Successfully created a subject",createdSubject);
     }
+
+    public static ResponseDTO getSubjects() {
+        List<SubjectEntity>subjectEntityList = subjectRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully fetched all subjects",subjectEntityList);
+    }
 }

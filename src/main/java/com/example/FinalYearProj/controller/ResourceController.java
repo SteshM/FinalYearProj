@@ -41,4 +41,8 @@ public class ResourceController {
     public ResponseDTO createSubject(@RequestBody SubjectDTO subjectDTO){
         return ResourceServices.createSubject(subjectDTO);
 }
+@GetMapping("/subjects")
+    public ResponseDTO getSubjects(){
+        return ResourceServices.getSubjects();
+}
 }
