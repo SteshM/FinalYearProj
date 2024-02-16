@@ -70,4 +70,12 @@ public class ResourceController {
 public ResponseDTO getTopicById(@PathVariable long topicId){
         return ResourceServices.getTopicById(topicId);
 }
+@PostMapping("/createContent")
+    public ResponseDTO createContent(@RequestBody ContentDTO contentDTO){
+        return ResourceServices.createContent(contentDTO);
+}
+@GetMapping("/content")
+    public ResponseDTO getContent(){
+        return ResourceServices.getContent();
+}
 }

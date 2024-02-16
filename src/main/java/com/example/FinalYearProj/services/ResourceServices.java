@@ -20,6 +20,7 @@ public class ResourceServices {
   private static SubjectRepo subjectRepo;
   private static LessonRepo lessonRepo;
   private static TopicRepo topicRepo;
+  private static ContentRepo contentRepo;
 
     public static ResponseDTO createLevel(LevelDTO levelDTO) {
         LevelEntity levelEntity = new LevelEntity();
@@ -111,5 +112,18 @@ public class ResourceServices {
     public static ResponseDTO getTopicById(long topicId) {
         TopicEntity topicEntity = topicRepo.findById(topicId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched topic by Id",topicEntity);
+    }
+
+    public static ResponseDTO createContent(ContentDTO contentDTO) {
+        ContentEntity contentEntity = new ContentEntity();
+        contentEntity.setContentUrl(contentDTO.getContentUrl());
+        contentEntity.setContentDescription(contentDTO.getContentDescription());
+        ContentEntity createdContent = contentRepo.save(contentEntity);
+        return Utilities.createSuccessfulResponse("Successfully created content",createdContent);
+    }
+
+    public static ResponseDTO getContent() {
+        List<ContentEntity> contentEntityList = contentRepo.findAll();
+        return Utilities.createSuccessfulResponse("successfully fetched content",contentEntityList);
     }
 }
