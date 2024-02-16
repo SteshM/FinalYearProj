@@ -58,5 +58,9 @@ public class ResourceController {
     public ResponseDTO getLessonsById(@PathVariable long lessonId){
         return ResourceServices.getLessonById(lessonId);
 }
+@PostMapping("/createTopic")
+    public ResponseDTO createTopic(@RequestBody TopicDTO topicDTO){
+        return ResourceServices.createTopic(topicDTO);
+}
 
 }

@@ -2,14 +2,8 @@ package com.example.FinalYearProj.services;
 
 import com.example.FinalYearProj.Utilities.Utilities;
 import com.example.FinalYearProj.dto.*;
-import com.example.FinalYearProj.entities.GradeEntity;
-import com.example.FinalYearProj.entities.LessonEntity;
-import com.example.FinalYearProj.entities.LevelEntity;
-import com.example.FinalYearProj.entities.SubjectEntity;
-import com.example.FinalYearProj.repos.GradeRepo;
-import com.example.FinalYearProj.repos.LessonRepo;
-import com.example.FinalYearProj.repos.LevelRepo;
-import com.example.FinalYearProj.repos.SubjectRepo;
+import com.example.FinalYearProj.entities.*;
+import com.example.FinalYearProj.repos.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +19,7 @@ public class ResourceServices {
   private static GradeRepo gradeRepo;
   private static SubjectRepo subjectRepo;
   private static LessonRepo lessonRepo;
+  private static TopicRepo topicRepo;
 
     public static ResponseDTO createLevel(LevelDTO levelDTO) {
         LevelEntity levelEntity = new LevelEntity();
@@ -99,5 +94,12 @@ public class ResourceServices {
     public static ResponseDTO getLessonById(long lessonId) {
         LessonEntity lessonEntity = lessonRepo.findById(lessonId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched a lesson",lessonEntity);
+    }
+
+    public static ResponseDTO createTopic(TopicDTO topicDTO) {
+        TopicEntity topicEntity = new TopicEntity();
+        topicEntity.setTopicName(topicDTO.getTopicName());
+        TopicEntity createdTopic = topicRepo.save(topicEntity);
+        return Utilities.createSuccessfulResponse("Successfully created a topic",createdTopic);
     }
 }
