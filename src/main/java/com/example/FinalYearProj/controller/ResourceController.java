@@ -45,4 +45,8 @@ public class ResourceController {
     public ResponseDTO getSubjects(){
         return ResourceServices.getSubjects();
 }
+@GetMapping("/getSubject{subjectId}")
+    public ResponseDTO getSubjectById(@PathVariable long subjectId){
+        return ResourceServices.getSubjectById(subjectId);
+}
 }

@@ -56,7 +56,7 @@ public class ResourceServices {
     }
 
     public static ResponseDTO getGradeById(long gradeId) {
-        GradeEntity gradeEntity = gradeRepo.FindByGradeId(gradeId);
+        GradeEntity gradeEntity = gradeRepo.findById(gradeId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched one grade",gradeEntity);
     }
 
@@ -75,5 +75,11 @@ public class ResourceServices {
     public static ResponseDTO getSubjects() {
         List<SubjectEntity>subjectEntityList = subjectRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all subjects",subjectEntityList);
+    }
+
+    public static ResponseDTO getSubjectById(long subjectId) {
+        SubjectEntity subjectEntity = subjectRepo.findById(subjectId).get();
+        return Utilities.createSuccessfulResponse("Successfully fetched a subject by its Id", subjectEntity);
+
     }
 }
