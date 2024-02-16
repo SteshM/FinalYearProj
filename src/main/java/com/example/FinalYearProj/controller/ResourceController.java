@@ -50,5 +50,9 @@ public class ResourceController {
     public ResponseDTO createLesson(@RequestBody LessonDTO lessonDTO){
         return ResourceServices.createLesson(lessonDTO);
 }
+@GetMapping("/lessons")
+    public ResponseDTO getLessons(){
+        return ResourceServices.getLessons();
+}
 
 }

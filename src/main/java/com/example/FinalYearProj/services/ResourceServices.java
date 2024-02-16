@@ -90,4 +90,9 @@ public class ResourceServices {
         LessonEntity createdLesson = lessonRepo.save(lessonEntity);
         return  Utilities.createSuccessfulResponse("Successfully created a lesson", createdLesson);
     }
+
+    public static ResponseDTO getLessons() {
+       List<LessonEntity>  lessonEntityList = lessonRepo.findAll();
+       return Utilities.createSuccessfulResponse("Successfully fetched all lessons",lessonEntityList);
+    }
 }
