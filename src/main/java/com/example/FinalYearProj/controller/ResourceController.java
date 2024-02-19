@@ -82,4 +82,8 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO getContentById(@PathVariable long contentId){
         return ResourceServices.getContentById(contentId);
 }
+@PostMapping("/createContentType")
+    public ResponseDTO createContentType(@RequestBody ContentTypeDTO contentTypeDTO){
+        return ResourceServices.createContentType(contentTypeDTO);
+}
 }
