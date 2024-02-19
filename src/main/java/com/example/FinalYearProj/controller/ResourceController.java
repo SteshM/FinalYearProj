@@ -14,7 +14,7 @@ public class ResourceController {
         log.info("Received a payload to create a level.payload received:{}",levelDTO);
         return ResourceServices.createLevel(levelDTO);
     }
-    @GetMapping("/getlevel{levelId}")
+    @GetMapping("/getLevel{levelId}")
     public ResponseDTO getLevelById(@PathVariable long levelId){
         return ResourceServices.getLevelById(levelId);
     }
