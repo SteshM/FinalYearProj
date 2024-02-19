@@ -166,4 +166,9 @@ public class ResourceServices {
         HomeWorkEntity updatedHomeWork = homeWorkRepo.save(homeWorkEntity);
         return Utilities.createSuccessfulResponse("Successfully updated HomeWork",updatedHomeWork);
     }
+
+    public static ResponseDTO deleteById(long id) {
+        homeWorkRepo.deleteById(id);
+        return Utilities.createSuccessfulResponse("Successfully deleted homeworkById",id);
+    }
 }

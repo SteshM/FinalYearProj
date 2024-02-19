@@ -104,4 +104,8 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO updateHomeWork(@PathVariable long id, @RequestBody HomeWorkDTO homeWorkDTO){
         return ResourceServices.updateHomeWork(id , homeWorkDTO);
 }
+@DeleteMapping ("/homeWork/{id}")
+    public ResponseDTO delete(@PathVariable long id ){
+        return ResourceServices.deleteById(id);
+}
 }
