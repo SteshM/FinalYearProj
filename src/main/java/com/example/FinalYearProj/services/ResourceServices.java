@@ -139,4 +139,9 @@ public class ResourceServices {
         ContentTypeEntity createdContentType = contentTypeRepo.save(contentTypeEntity);
         return Utilities.createSuccessfulResponse("Successfully created contentType",createdContentType);
     }
+
+    public static ResponseDTO getContentTypes() {
+        List<ContentTypeEntity> contentTypeEntityList = contentTypeRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully retrieved contentTypes",contentTypeEntityList);
+    }
 }
