@@ -90,4 +90,9 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO getContentTypes(){
         return ResourceServices.getContentTypes();
 }
+
+@PostMapping("/createHomeWork")
+    public ResponseDTO createHomeWork(HomeWorkDTO homeWorkDTO){
+        return ResourceServices.createHomework(homeWorkDTO);
+}
 }
