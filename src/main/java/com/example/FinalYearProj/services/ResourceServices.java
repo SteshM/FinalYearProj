@@ -153,4 +153,9 @@ public class ResourceServices {
         HomeWorkEntity createdHomeWork = homeWorkRepo.save(homeWorkEntity);
         return Utilities.createSuccessfulResponse("Created homeWork successfully",createdHomeWork);
     }
+
+    public static ResponseDTO getHomeWorks() {
+        List<HomeWorkEntity> homeWorkEntityList = homeWorkRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully retrieved all HomeWorks",homeWorkEntityList);
+    }
 }

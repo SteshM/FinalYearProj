@@ -95,4 +95,8 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO createHomeWork(HomeWorkDTO homeWorkDTO){
         return ResourceServices.createHomework(homeWorkDTO);
 }
+@GetMapping("/HomeWorks")
+    public ResponseDTO getHomeWorks(){
+        return ResourceServices.getHomeWorks();
+}
 }
