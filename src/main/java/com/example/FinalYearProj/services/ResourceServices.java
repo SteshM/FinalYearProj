@@ -158,4 +158,12 @@ public class ResourceServices {
         List<HomeWorkEntity> homeWorkEntityList = homeWorkRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully retrieved all HomeWorks",homeWorkEntityList);
     }
+
+    public static ResponseDTO updateHomeWork(long id, HomeWorkDTO homeWorkDTO) {
+        HomeWorkEntity homeWorkEntity = homeWorkRepo.findById(id).get();
+        homeWorkEntity.setHomeWorkHeading(homeWorkDTO.getHomeWorkHeading());
+        homeWorkEntity.setHomeWorkHeading(homeWorkDTO.getHomeWorkHeading());
+        HomeWorkEntity updatedHomeWork = homeWorkRepo.save(homeWorkEntity);
+        return Utilities.createSuccessfulResponse("Successfully updated HomeWork",updatedHomeWork);
+    }
 }

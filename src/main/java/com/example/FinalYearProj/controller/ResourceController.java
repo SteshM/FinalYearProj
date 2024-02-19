@@ -99,4 +99,9 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO getHomeWorks(){
         return ResourceServices.getHomeWorks();
 }
+
+@PutMapping("/homeWork/{id}")
+    public ResponseDTO updateHomeWork(@PathVariable long id, @RequestBody HomeWorkDTO homeWorkDTO){
+        return ResourceServices.updateHomeWork(id , homeWorkDTO);
+}
 }
