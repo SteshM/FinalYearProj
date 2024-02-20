@@ -108,4 +108,10 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO delete(@PathVariable long id ){
         return ResourceServices.deleteById(id);
 }
+
+    @PostMapping("/createQuestion")
+    public ResponseDTO createQuestion(@RequestBody QuestionDTO questionDTO){
+        return ResourceServices.createQuestion(questionDTO);
+    }
 }
+

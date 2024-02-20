@@ -23,6 +23,8 @@ public class ResourceServices {
     private static ContentRepo contentRepo;
     static ContentTypeRepo contentTypeRepo;
     static HomeWorkRepo homeWorkRepo;
+    static QuestionRepo questionRepo;
+    AnswerRepo answerRepo;
 
     public static ResponseDTO createLevel(LevelDTO levelDTO) {
         LevelEntity levelEntity = new LevelEntity();
@@ -170,5 +172,12 @@ public class ResourceServices {
     public static ResponseDTO deleteById(long id) {
         homeWorkRepo.deleteById(id);
         return Utilities.createSuccessfulResponse("Successfully deleted homeworkById",id);
+    }
+
+    public static ResponseDTO createQuestion(QuestionDTO questionDTO) {
+        QuestionEntity questionEntity = new QuestionEntity();
+        questionEntity.setQuestion(questionDTO.getQuestion());
+        QuestionEntity createdQuestion = questionRepo.save(questionEntity);
+        return Utilities.createSuccessfulResponse("Successfully created a question",createdQuestion);
     }
 }
