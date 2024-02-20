@@ -113,5 +113,9 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO createQuestion(@RequestBody QuestionDTO questionDTO){
         return ResourceServices.createQuestion(questionDTO);
     }
+    @GetMapping("/Questions")
+    public ResponseDTO getQuestions(){
+        return ResourceServices.getQuestions();
+    }
 }
 

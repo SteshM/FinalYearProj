@@ -180,4 +180,9 @@ public class ResourceServices {
         QuestionEntity createdQuestion = questionRepo.save(questionEntity);
         return Utilities.createSuccessfulResponse("Successfully created a question",createdQuestion);
     }
+
+    public static ResponseDTO getQuestions() {
+        List<QuestionEntity>questionEntityList = questionRepo.findAll();
+        return Utilities.createSuccessfulResponse("Successfully fetched all the questions",questionEntityList);
+    }
 }
