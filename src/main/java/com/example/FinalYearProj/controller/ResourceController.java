@@ -113,9 +113,13 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO createQuestion(@RequestBody QuestionDTO questionDTO){
         return ResourceServices.createQuestion(questionDTO);
     }
-    @GetMapping("/Questions")
+    @GetMapping("/questions")
     public ResponseDTO getQuestions(){
         return ResourceServices.getQuestions();
+    }
+    @GetMapping("/question/{id}")
+    public ResponseDTO getSingleQuestion(@PathVariable long id){
+        return ResourceServices.getSingleQuestion(id);
     }
 }
 

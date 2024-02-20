@@ -185,4 +185,9 @@ public class ResourceServices {
         List<QuestionEntity>questionEntityList = questionRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all the questions",questionEntityList);
     }
+
+    public static ResponseDTO getSingleQuestion(long id) {
+        QuestionEntity questionEntity = questionRepo.findById(id).get();
+        return Utilities.createSuccessfulResponse("successfully fetched a question",questionEntity);
+    }
 }
