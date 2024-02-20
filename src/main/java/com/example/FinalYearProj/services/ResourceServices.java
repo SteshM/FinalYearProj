@@ -196,4 +196,9 @@ public class ResourceServices {
         questionEntity.setQuestion(questionDTO.getQuestion());
         return Utilities.createSuccessfulResponse("Successfully updated a question",id);
     }
+
+    public static ResponseDTO deleteQuestion(long id) {
+        questionRepo.deleteById(id);
+        return Utilities.createSuccessfulResponse("Successfully deleted a question",id);
+    }
 }

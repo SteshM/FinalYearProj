@@ -2,6 +2,7 @@ package com.example.FinalYearProj.controller;
 
 import com.example.FinalYearProj.dto.*;
 import com.example.FinalYearProj.services.ResourceServices;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -124,6 +125,10 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     @PutMapping("/question/{id}")
     public ResponseDTO updateQuestion(@PathVariable long id , @RequestBody QuestionDTO questionDTO){
         return ResourceServices.updateQuestion(id , questionDTO);
+    }
+    @DeleteMapping("/question/{id}")
+    public ResponseDTO deleteQuestion(@PathVariable long id){
+        return ResourceServices.deleteQuestion(id);
     }
 }
 
