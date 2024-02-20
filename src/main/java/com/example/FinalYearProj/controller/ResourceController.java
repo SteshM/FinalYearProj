@@ -121,5 +121,9 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO getSingleQuestion(@PathVariable long id){
         return ResourceServices.getSingleQuestion(id);
     }
+    @PutMapping("/question/{id}")
+    public ResponseDTO updateQuestion(@PathVariable long id , @RequestBody QuestionDTO questionDTO){
+        return ResourceServices.updateQuestion(id , questionDTO);
+    }
 }
 

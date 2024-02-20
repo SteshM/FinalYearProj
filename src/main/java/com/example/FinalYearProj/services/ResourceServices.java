@@ -190,4 +190,10 @@ public class ResourceServices {
         QuestionEntity questionEntity = questionRepo.findById(id).get();
         return Utilities.createSuccessfulResponse("successfully fetched a question",questionEntity);
     }
+
+    public static ResponseDTO updateQuestion(long id, QuestionDTO questionDTO) {
+        QuestionEntity questionEntity = questionRepo.findById(id).get();
+        questionEntity.setQuestion(questionDTO.getQuestion());
+        return Utilities.createSuccessfulResponse("Successfully updated a question",id);
+    }
 }
