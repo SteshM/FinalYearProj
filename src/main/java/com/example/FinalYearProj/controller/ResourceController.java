@@ -23,6 +23,7 @@ public class ResourceController {
     public ResponseDTO getLevels(){
         return ResourceServices.getLevels();
     }
+
     @PostMapping("/grade")
     public ResponseDTO createGrade(@RequestBody GradeDTO gradeDTO){
         return ResourceServices.createGrade(gradeDTO);
@@ -35,7 +36,14 @@ public class ResourceController {
     public ResponseDTO getGrades(){
         return ResourceServices.getGrades();
     }
-@PostMapping("/createSubject")
+
+    @PutMapping("/grade{id}")
+    public ResponseDTO updateGrade(@PathVariable long id , @RequestBody GradeDTO gradeDTO){
+        return ResourceServices.updateGrade(id , gradeDTO);
+    }
+
+
+    @PostMapping("/createSubject")
     public ResponseDTO createSubject(@RequestBody SubjectDTO subjectDTO){
         return ResourceServices.createSubject(subjectDTO);
 }
@@ -71,6 +79,7 @@ public class ResourceController {
 public ResponseDTO getTopicById(@PathVariable long topicId){
         return ResourceServices.getTopicById(topicId);
 }
+
 @PostMapping("/createContent")
     public ResponseDTO createContent(@RequestBody ContentDTO contentDTO){
         return ResourceServices.createContent(contentDTO);
@@ -82,7 +91,15 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
 @GetMapping("/getContent{contentId}")
     public ResponseDTO getContentById(@PathVariable long contentId){
         return ResourceServices.getContentById(contentId);
+
 }
+@PutMapping("/content/{id}")
+public  ResponseDTO updateContent(@PathVariable long id , @RequestBody ContentDTO contentDTO){
+        return ResourceServices.updateContent(id , contentDTO);
+}
+
+
+
 @PostMapping("/createContentType")
     public ResponseDTO createContentType(@RequestBody ContentTypeDTO contentTypeDTO){
         return ResourceServices.createContentType(contentTypeDTO);
@@ -130,5 +147,7 @@ public ResponseDTO getTopicById(@PathVariable long topicId){
     public ResponseDTO deleteQuestion(@PathVariable long id){
         return ResourceServices.deleteQuestion(id);
     }
+
+
 }
 
