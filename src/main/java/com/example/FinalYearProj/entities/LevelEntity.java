@@ -1,9 +1,13 @@
 package com.example.FinalYearProj.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,5 +20,11 @@ public class LevelEntity {
     private long levelId;
     private String levelName;
     private String levelDescription;
+
+ //   @JsonManagedReference
+    @OneToMany
+  //  @JoinColumn(name = "gradeId")
+    private List<GradeEntity> gradeEntities = new ArrayList<>();
+
 
 }

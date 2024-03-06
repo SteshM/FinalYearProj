@@ -1,5 +1,6 @@
 package com.example.FinalYearProj.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +16,9 @@ public class GradeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long gradeId;
     private String gradeName;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "levelId")
+    private LevelEntity level;
 }

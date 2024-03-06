@@ -15,75 +15,70 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResourceServices {
 
-    private static LevelRepo levelRepo;
-    private static GradeRepo gradeRepo;
-    private static SubjectRepo subjectRepo;
-    private static LessonRepo lessonRepo;
-    private static TopicRepo topicRepo;
-    private static ContentRepo contentRepo;
-    static ContentTypeRepo contentTypeRepo;
-    static HomeWorkRepo homeWorkRepo;
-    static QuestionRepo questionRepo;
-    AnswerRepo answerRepo;
+    private final LevelRepo levelRepo;
+    private final GradeRepo gradeRepo;
+    private final SubjectRepo subjectRepo;
+    private final LessonRepo lessonRepo;
+    private final TopicRepo topicRepo;
+    private final ContentRepo contentRepo;
+    private final ContentTypeRepo contentTypeRepo;
+    private final HomeWorkRepo homeWorkRepo;
+    private final QuestionRepo questionRepo;
+    private final AnswerRepo answerRepo;
 
-    public static ResponseDTO createLevel(LevelDTO levelDTO) {
-        LevelEntity levelEntity = new LevelEntity();
-        levelEntity.setLevelName(levelDTO.getLevelName());
-        levelEntity.setLevelDescription(levelDTO.getLevelDescription());
-        LevelEntity createdLevel = levelRepo.save(levelEntity);
-        return Utilities.createSuccessfulResponse("successfully created a level", createdLevel);
-    }
 
-    public static ResponseDTO getLevelById(long levelId) {
+    public ResponseDTO getLevelById(long levelId) {
         LevelEntity levelEntity = levelRepo.findBylevelId(levelId);
         return Utilities.createSuccessfulResponse("successfully retrieved levels", levelEntity);
 
 
     }
 
-    public static ResponseDTO getLevels() {
+    public ResponseDTO getLevels() {
         List<LevelEntity> levelEntityList = levelRepo.findAll();
         return Utilities.createSuccessfulResponse("successfully fetched all levels", levelEntityList);
     }
 
-    public static ResponseDTO createGrade(GradeDTO gradeDTO) {
-        GradeEntity gradeEntity = new GradeEntity();
-        gradeEntity.setGradeName(gradeDTO.getGradeName());
-        GradeEntity createdGrade = gradeRepo.save(gradeEntity);
-        return Utilities.createSuccessfulResponse("Successfully created Grade", createdGrade);
 
-    }
 
-    public static ResponseDTO getGradeById(long gradeId) {
+    public  ResponseDTO getGradeById(long gradeId) {
         GradeEntity gradeEntity = gradeRepo.findById(gradeId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched one grade", gradeEntity);
     }
 
-    public static ResponseDTO getGrades() {
+
+    public ResponseDTO getGrades() {
         List<GradeEntity> gradeEntityList = gradeRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all grades", gradeEntityList);
     }
 
-    public static ResponseDTO createSubject(SubjectDTO subjectDTO) {
+    public  ResponseDTO updateGrade(long id, GradeDTO gradeDTO) {
+        GradeEntity gradeEntity = gradeRepo.findById(id).get();
+        gradeEntity.setGradeName(gradeDTO.getGradeName());
+        return Utilities.createSuccessfulResponse("Successfully updated grade",gradeDTO);
+    }
+
+
+    public  ResponseDTO createSubject(SubjectDTO subjectDTO) {
         SubjectEntity subjectEntity = new SubjectEntity();
         subjectEntity.setSubjectName(subjectDTO.getSubjectName());
         SubjectEntity createdSubject = subjectRepo.save(subjectEntity);
         return Utilities.createSuccessfulResponse("Successfully created a subject", createdSubject);
     }
 
-    public static ResponseDTO getSubjects() {
+    public ResponseDTO getSubjects() {
         List<SubjectEntity> subjectEntityList = subjectRepo.findAll();
         log.info("Received a payload to retrieve all subjects");
         return Utilities.createSuccessfulResponse("Successfully fetched all subjects", subjectEntityList);
     }
 
-    public static ResponseDTO getSubjectById(long subjectId) {
+    public  ResponseDTO getSubjectById(long subjectId) {
         SubjectEntity subjectEntity = subjectRepo.findById(subjectId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched a subject by its Id", subjectEntity);
 
     }
 
-    public static ResponseDTO createLesson(LessonDTO lessonDTO) {
+    public  ResponseDTO createLesson(LessonDTO lessonDTO) {
         LessonEntity lessonEntity = new LessonEntity();
         lessonEntity.setLessonName(lessonDTO.getLessonName());
         lessonEntity.setLessonDescription(lessonDTO.getLessonDescription());
@@ -92,35 +87,35 @@ public class ResourceServices {
         return Utilities.createSuccessfulResponse("Successfully created a lesson", createdLesson);
     }
 
-    public static ResponseDTO getLessons() {
+    public  ResponseDTO getLessons() {
         List<LessonEntity> lessonEntityList = lessonRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all lessons", lessonEntityList);
     }
 
-    public static ResponseDTO getLessonById(long lessonId) {
+    public  ResponseDTO getLessonById(long lessonId) {
         LessonEntity lessonEntity = lessonRepo.findById(lessonId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched a lesson", lessonEntity);
     }
 
-    public static ResponseDTO createTopic(TopicDTO topicDTO) {
+    public  ResponseDTO createTopic(TopicDTO topicDTO) {
         TopicEntity topicEntity = new TopicEntity();
         topicEntity.setTopicName(topicDTO.getTopicName());
         TopicEntity createdTopic = topicRepo.save(topicEntity);
         return Utilities.createSuccessfulResponse("Successfully created a topic", createdTopic);
     }
 
-    public static ResponseDTO getTopics() {
+    public  ResponseDTO getTopics() {
         List<TopicEntity> topicEntityList = topicRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all topics", topicEntityList);
     }
 
-    public static ResponseDTO getTopicById(long topicId) {
+    public  ResponseDTO getTopicById(long topicId) {
         TopicEntity topicEntity = topicRepo.findById(topicId).get();
         return Utilities.createSuccessfulResponse("Successfully fetched topic by Id", topicEntity);
     }
 
 
-    public static ResponseDTO createContent(ContentDTO contentDTO) {
+    public  ResponseDTO createContent(ContentDTO contentDTO) {
         ContentEntity contentEntity = new ContentEntity();
         contentEntity.setContentUrl(contentDTO.getContentUrl());
         contentEntity.setContentDescription(contentDTO.getContentDescription());
@@ -128,35 +123,36 @@ public class ResourceServices {
         return Utilities.createSuccessfulResponse("Successfully created content", createdContent);
     }
 
-    public static ResponseDTO getContent() {
+    public  ResponseDTO getContent() {
         List<ContentEntity> contentEntityList = contentRepo.findAll();
         return Utilities.createSuccessfulResponse("successfully fetched content", contentEntityList);
     }
 
-    public static ResponseDTO getContentById(long contentId) {
+    public  ResponseDTO getContentById(long contentId) {
         ContentEntity contentEntity = contentRepo.findById(contentId).get();
         return Utilities.createSuccessfulResponse("successfully fetched content by Id", contentEntity);
     }
 
-    public static ResponseDTO createContentType(ContentTypeDTO contentTypeDTO) {
+    public  ResponseDTO createContentType(ContentTypeDTO contentTypeDTO) {
         ContentTypeEntity contentTypeEntity = new ContentTypeEntity();
+        contentTypeEntity.setContentTypeId(contentTypeDTO.getContentTypeId());
         contentTypeEntity.setContentTypeDescription(contentTypeDTO.getContentTypeDescription());
         ContentTypeEntity createdContentType = contentTypeRepo.save(contentTypeEntity);
         return Utilities.createSuccessfulResponse("Successfully created contentType", createdContentType);
     }
 
-    public static ResponseDTO updateContent(long id, ContentDTO contentDTO) {
+    public  ResponseDTO updateContent(long id, ContentDTO contentDTO) {
         ContentEntity contentEntity = contentRepo.findById(id).get();
-        return Utilities.createSuccessfulResponse("Successfully updated content",contentEntity);
+        return Utilities.createSuccessfulResponse("Successfully updated content",contentDTO);
 
     }
 
-    public static ResponseDTO getContentTypes() {
+    public  ResponseDTO getContentTypes() {
         List<ContentTypeEntity> contentTypeEntityList = contentTypeRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully retrieved contentTypes", contentTypeEntityList);
     }
 
-    public static ResponseDTO createHomework(HomeWorkDTO homeWorkDTO) {
+    public  ResponseDTO createHomework(HomeWorkDTO homeWorkDTO) {
         HomeWorkEntity homeWorkEntity = new HomeWorkEntity();
         homeWorkEntity.setHomeWorkHeading(homeWorkDTO.getHomeWorkHeading());
         homeWorkEntity.setDate(homeWorkDTO.getDate());
@@ -164,12 +160,12 @@ public class ResourceServices {
         return Utilities.createSuccessfulResponse("Created homeWork successfully",createdHomeWork);
     }
 
-    public static ResponseDTO getHomeWorks() {
+    public  ResponseDTO getHomeWorks() {
         List<HomeWorkEntity> homeWorkEntityList = homeWorkRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully retrieved all HomeWorks",homeWorkEntityList);
     }
 
-    public static ResponseDTO updateHomeWork(long id, HomeWorkDTO homeWorkDTO) {
+    public  ResponseDTO updateHomeWork(long id, HomeWorkDTO homeWorkDTO) {
         HomeWorkEntity homeWorkEntity = homeWorkRepo.findById(id).get();
         homeWorkEntity.setHomeWorkHeading(homeWorkDTO.getHomeWorkHeading());
         homeWorkEntity.setHomeWorkHeading(homeWorkDTO.getHomeWorkHeading());
@@ -177,43 +173,39 @@ public class ResourceServices {
         return Utilities.createSuccessfulResponse("Successfully updated HomeWork",updatedHomeWork);
     }
 
-    public static ResponseDTO deleteById(long id) {
+    public  ResponseDTO deleteById(long id) {
         homeWorkRepo.deleteById(id);
         return Utilities.createSuccessfulResponse("Successfully deleted homeworkById",id);
     }
 
-    public static ResponseDTO createQuestion(QuestionDTO questionDTO) {
+    public  ResponseDTO createQuestion(QuestionDTO questionDTO) {
         QuestionEntity questionEntity = new QuestionEntity();
         questionEntity.setQuestion(questionDTO.getQuestion());
         QuestionEntity createdQuestion = questionRepo.save(questionEntity);
         return Utilities.createSuccessfulResponse("Successfully created a question",createdQuestion);
     }
 
-    public static ResponseDTO getQuestions() {
+    public  ResponseDTO getQuestions() {
         List<QuestionEntity>questionEntityList = questionRepo.findAll();
         return Utilities.createSuccessfulResponse("Successfully fetched all the questions",questionEntityList);
     }
 
-    public static ResponseDTO getSingleQuestion(long id) {
+    public  ResponseDTO getSingleQuestion(long id) {
         QuestionEntity questionEntity = questionRepo.findById(id).get();
         return Utilities.createSuccessfulResponse("successfully fetched a question",questionEntity);
     }
 
-    public static ResponseDTO updateQuestion(long id, QuestionDTO questionDTO) {
+    public ResponseDTO updateQuestion(long id, QuestionDTO questionDTO) {
         QuestionEntity questionEntity = questionRepo.findById(id).get();
         questionEntity.setQuestion(questionDTO.getQuestion());
         return Utilities.createSuccessfulResponse("Successfully updated a question",id);
     }
 
-    public static ResponseDTO deleteQuestion(long id) {
+    public  ResponseDTO deleteQuestion(long id) {
         questionRepo.deleteById(id);
         return Utilities.createSuccessfulResponse("Successfully deleted a question",id);
     }
 
 
-    public static ResponseDTO updateGrade(long id, GradeDTO gradeDTO) {
-        GradeEntity gradeEntity = gradeRepo.findById(id).get();
-        gradeEntity.setGradeName(gradeDTO.getGradeName());
-        return Utilities.createSuccessfulResponse("Successfully updated grade",gradeDTO);
-    }
+
 }

@@ -3,7 +3,6 @@ package com.example.FinalYearProj.dto;
 import lombok.Data;
 
 @Data
-public class SubjectDTO {
-    private String subjectName;
-
+public class StudentDTO {
+    private String admissionNo;
 }

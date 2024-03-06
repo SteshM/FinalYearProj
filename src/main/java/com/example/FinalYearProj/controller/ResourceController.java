@@ -4,148 +4,138 @@ import com.example.FinalYearProj.dto.*;
 import com.example.FinalYearProj.services.ResourceServices;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
 @RequestMapping("/v1/resource")
 public class ResourceController {
-    @PostMapping("/level")
-    public ResponseDTO createLevel(@RequestBody LevelDTO levelDTO){
-        log.info("Received a payload to create a level.payload received:{}",levelDTO);
-        return ResourceServices.createLevel(levelDTO);
-    }
-    @GetMapping("/getLevel{levelId}")
+    @Autowired
+    ResourceServices resourceServices;
+
+    @GetMapping("/get-Level/{levelId}")
     public ResponseDTO getLevelById(@PathVariable long levelId){
-        return ResourceServices.getLevelById(levelId);
+        return resourceServices.getLevelById(levelId);
     }
     @GetMapping("/levels")
     public ResponseDTO getLevels(){
-        return ResourceServices.getLevels();
+        return resourceServices.getLevels();
     }
 
-    @PostMapping("/grade")
-    public ResponseDTO createGrade(@RequestBody GradeDTO gradeDTO){
-        return ResourceServices.createGrade(gradeDTO);
-    }
-    @GetMapping("/getGrade{gradeId}")
+    @GetMapping("/get-Grade/{gradeId}")
     public ResponseDTO getGradeById(@PathVariable long gradeId){
-        return ResourceServices.getGradeById(gradeId);
+        return resourceServices.getGradeById(gradeId);
     }
     @GetMapping("/grades")
     public ResponseDTO getGrades(){
-        return ResourceServices.getGrades();
+        return resourceServices.getGrades();
     }
 
-    @PutMapping("/grade{id}")
+    @PutMapping("/grade/{id}")
     public ResponseDTO updateGrade(@PathVariable long id , @RequestBody GradeDTO gradeDTO){
-        return ResourceServices.updateGrade(id , gradeDTO);
+        return resourceServices.updateGrade(id , gradeDTO);
     }
 
 
-    @PostMapping("/createSubject")
-    public ResponseDTO createSubject(@RequestBody SubjectDTO subjectDTO){
-        return ResourceServices.createSubject(subjectDTO);
-}
 @GetMapping("/subjects")
     public ResponseDTO getSubjects(){
-        return ResourceServices.getSubjects();
+        return resourceServices.getSubjects();
 }
-@GetMapping("/getSubject{subjectId}")
+@GetMapping("/get-Subject/{subjectId}")
     public ResponseDTO getSubjectById(@PathVariable long subjectId){
-        return ResourceServices.getSubjectById(subjectId);
+        return resourceServices.getSubjectById(subjectId);
 }
-@PostMapping("/createLesson")
+@PostMapping("/create-Lesson")
     public ResponseDTO createLesson(@RequestBody LessonDTO lessonDTO){
-        return ResourceServices.createLesson(lessonDTO);
+        return resourceServices.createLesson(lessonDTO);
 }
 @GetMapping("/lessons")
     public ResponseDTO getLessons(){
-        return ResourceServices.getLessons();
+        return resourceServices.getLessons();
 }
-@GetMapping("/getLesson{lessonId}")
+@GetMapping("/get-Lesson/{lessonId}")
     public ResponseDTO getLessonsById(@PathVariable long lessonId){
-        return ResourceServices.getLessonById(lessonId);
+        return resourceServices.getLessonById(lessonId);
 }
-@PostMapping("/createTopic")
+@PostMapping("/create-Topic")
     public ResponseDTO createTopic(@RequestBody TopicDTO topicDTO){
-        return ResourceServices.createTopic(topicDTO);
+        return resourceServices.createTopic(topicDTO);
 }
 @GetMapping("/topics")
     public ResponseDTO getTopics(){
-        return ResourceServices.getTopics();
+        return resourceServices.getTopics();
 }
-@GetMapping("/getTopic{topicId}")
+@GetMapping("/get-Topic/{topicId}")
 public ResponseDTO getTopicById(@PathVariable long topicId){
-        return ResourceServices.getTopicById(topicId);
+        return resourceServices.getTopicById(topicId);
 }
 
-@PostMapping("/createContent")
+@PostMapping("/create-Content")
     public ResponseDTO createContent(@RequestBody ContentDTO contentDTO){
-        return ResourceServices.createContent(contentDTO);
+        return resourceServices.createContent(contentDTO);
 }
 @GetMapping("/content")
     public ResponseDTO getContent(){
-        return ResourceServices.getContent();
+        return resourceServices.getContent();
 }
-@GetMapping("/getContent{contentId}")
+@GetMapping("/get-Content/{contentId}")
     public ResponseDTO getContentById(@PathVariable long contentId){
-        return ResourceServices.getContentById(contentId);
+        return resourceServices.getContentById(contentId);
 
 }
 @PutMapping("/content/{id}")
 public  ResponseDTO updateContent(@PathVariable long id , @RequestBody ContentDTO contentDTO){
-        return ResourceServices.updateContent(id , contentDTO);
+        return resourceServices.updateContent(id , contentDTO);
 }
 
 
-
-@PostMapping("/createContentType")
+@PostMapping("/create-Content-Type")
     public ResponseDTO createContentType(@RequestBody ContentTypeDTO contentTypeDTO){
-        return ResourceServices.createContentType(contentTypeDTO);
+        return resourceServices.createContentType(contentTypeDTO);
 }
-@GetMapping("/contentTypes")
+@GetMapping("/content-Types")
     public ResponseDTO getContentTypes(){
-        return ResourceServices.getContentTypes();
+        return resourceServices.getContentTypes();
 }
 
-@PostMapping("/createHomeWork")
+@PostMapping("/create-HomeWork")
     public ResponseDTO createHomeWork(HomeWorkDTO homeWorkDTO){
-        return ResourceServices.createHomework(homeWorkDTO);
+        return resourceServices.createHomework(homeWorkDTO);
 }
 @GetMapping("/HomeWorks")
     public ResponseDTO getHomeWorks(){
-        return ResourceServices.getHomeWorks();
+        return resourceServices.getHomeWorks();
 }
 
 @PutMapping("/homeWork/{id}")
     public ResponseDTO updateHomeWork(@PathVariable long id, @RequestBody HomeWorkDTO homeWorkDTO){
-        return ResourceServices.updateHomeWork(id , homeWorkDTO);
+        return resourceServices.updateHomeWork(id , homeWorkDTO);
 }
 @DeleteMapping ("/homeWork/{id}")
     public ResponseDTO delete(@PathVariable long id ){
-        return ResourceServices.deleteById(id);
+        return resourceServices.deleteById(id);
 }
 
-    @PostMapping("/createQuestion")
+    @PostMapping("/create-Question")
     public ResponseDTO createQuestion(@RequestBody QuestionDTO questionDTO){
-        return ResourceServices.createQuestion(questionDTO);
+        return resourceServices.createQuestion(questionDTO);
     }
     @GetMapping("/questions")
     public ResponseDTO getQuestions(){
-        return ResourceServices.getQuestions();
+        return resourceServices.getQuestions();
     }
     @GetMapping("/question/{id}")
     public ResponseDTO getSingleQuestion(@PathVariable long id){
-        return ResourceServices.getSingleQuestion(id);
+        return resourceServices.getSingleQuestion(id);
     }
     @PutMapping("/question/{id}")
     public ResponseDTO updateQuestion(@PathVariable long id , @RequestBody QuestionDTO questionDTO){
-        return ResourceServices.updateQuestion(id , questionDTO);
+        return resourceServices.updateQuestion(id , questionDTO);
     }
     @DeleteMapping("/question/{id}")
     public ResponseDTO deleteQuestion(@PathVariable long id){
-        return ResourceServices.deleteQuestion(id);
+        return resourceServices.deleteQuestion(id);
     }
 
 
