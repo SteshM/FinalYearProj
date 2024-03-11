@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class GradeDTO {
     private String gradeName;
-    private long levelId;
+
 
 }

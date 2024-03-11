@@ -17,8 +17,4 @@ public class GradeEntity {
     private long gradeId;
     private String gradeName;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "levelId")
-    private LevelEntity level;
 }

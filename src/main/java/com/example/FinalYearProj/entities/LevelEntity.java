@@ -21,10 +21,6 @@ public class LevelEntity {
     private String levelName;
     private String levelDescription;
 
- //   @JsonManagedReference
-    @OneToMany
-  //  @JoinColumn(name = "gradeId")
-    private List<GradeEntity> gradeEntities = new ArrayList<>();
 
 
 }
