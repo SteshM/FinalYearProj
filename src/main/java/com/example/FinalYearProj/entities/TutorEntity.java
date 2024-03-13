@@ -14,7 +14,7 @@ public class TutorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tutorId;
-    private long employmentNo;
-    private long contact;
-    private long idNo;
+    private String employmentNo;
+    private long tutorContact;
+    private long tutorIdNo;
 }

@@ -24,7 +24,7 @@ public class ResourceServices {
     private final ContentTypeRepo contentTypeRepo;
     private final HomeWorkRepo homeWorkRepo;
     private final QuestionRepo questionRepo;
-    private final AnswerRepo answerRepo;
+
 
 
     public ResponseDTO getLevelById(long levelId) {

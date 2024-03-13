@@ -14,5 +14,6 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long studentId;
-    private long admissionNo;
+    private String admissionNo;
+    private String levelName;
 }

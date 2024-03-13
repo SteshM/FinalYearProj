@@ -14,5 +14,6 @@ public class UserDTO {
     private String admNo;
     private long parentIdNo;
     private long parentContact;
+    private String who;
 
 }

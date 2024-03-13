@@ -14,7 +14,7 @@ public class ParentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long parentId;
-    public long contact;
-    public long idNo;
+    public long parentContact;
+    public long parentIdNo;
 
 }
