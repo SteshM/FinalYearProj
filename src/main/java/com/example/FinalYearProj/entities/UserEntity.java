@@ -20,5 +20,6 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
     private String dateOfBirth;
+    private String role;
 
 }

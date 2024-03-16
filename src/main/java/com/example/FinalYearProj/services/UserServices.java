@@ -9,6 +9,7 @@ import com.example.FinalYearProj.repos.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,10 +20,18 @@ import java.util.List;
 public class UserServices {
  @Autowired
  UserRepo userRepo;
+ @Autowired
  StudentRepo studentRepo;
+ @Autowired
  TutorRepo tutorRepo;
+ @Autowired
  ParentRepo parentRepo;
+ @Autowired
  UserTypeRepo userTypeRepo;
+ @Autowired
+    PasswordEncoder passwordEncoder;
+
+
 
 
 
@@ -30,11 +39,12 @@ public class UserServices {
         UserEntity userEntity = new UserEntity();
         userEntity.setName(userDTO.getName());
         userEntity.setEmail(userDTO.getEmail());
-        userEntity.setPassword(userDTO.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userEntity.setDateOfBirth(userDTO.getDateOfBirth());
         if(userDTO.getWho().equalsIgnoreCase("Student")){
             StudentEntity studentEntity = new StudentEntity();
             studentEntity.setAdmissionNo(userDTO.getAdmNo());
+            userEntity.setRole("Student");
             studentRepo.save(studentEntity);
         }
         else if (userDTO.getWho().equalsIgnoreCase("Tutor")){
@@ -42,12 +52,14 @@ public class UserServices {
             tutorEntity.setEmploymentNo(userDTO.getEmploymentNo());
             tutorEntity.setTutorContact(userDTO.getTutorContact());
             tutorEntity.setTutorIdNo(userDTO.getTutorIdNo());
+            userEntity.setRole("Tutor");
             tutorRepo.save(tutorEntity);
         }
         else if(userDTO.getWho().equalsIgnoreCase("Parent")){
             ParentEntity parentEntity = new ParentEntity();
             parentEntity.setParentIdNo(userDTO.getParentIdNo());
             parentEntity.setParentContact(userDTO.getParentContact());
+            userEntity.setRole("Parent");
             parentRepo.save(parentEntity);
         }
 
