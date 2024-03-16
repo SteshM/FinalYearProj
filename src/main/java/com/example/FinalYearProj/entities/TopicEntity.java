@@ -15,5 +15,6 @@ public class TopicEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long topicId;
     private String topicName;
-
+    private String subjectName;
+    private  String gradeName;
 }

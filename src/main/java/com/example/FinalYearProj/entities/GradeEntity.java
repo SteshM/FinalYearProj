@@ -16,5 +16,5 @@ public class GradeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long gradeId;
     private String gradeName;
-
+    private String levelName;
 }

@@ -17,4 +17,6 @@ public class LessonEntity {
     private String lessonName;
     private String lessonDescription;
     private long duration;
+    private String gradeName;
+    private String topicName;
 }
