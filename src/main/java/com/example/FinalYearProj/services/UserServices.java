@@ -9,11 +9,12 @@ import com.example.FinalYearProj.repos.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -30,6 +31,8 @@ public class UserServices {
  UserTypeRepo userTypeRepo;
  @Autowired
     PasswordEncoder passwordEncoder;
+ @Autowired
+ TokenGenerator tokenGenerator;
 
 
 
@@ -66,6 +69,26 @@ public class UserServices {
         UserEntity createdUser = userRepo.save(userEntity);
         return Utilities.createSuccessfulResponse("Successfully created a user",createdUser
         );
+    }
+    public ResponseDTO login(UserDTO userDTO){
+        UserEntity user = userRepo.findByEmail(userDTO.getEmail());
+        if (user == null){
+            return Utilities.createFailedResponse(404L,"User not found");
+        }
+        else{
+            if (passwordEncoder.matches(userDTO.getPassword(),user.getPassword())){
+                Collection<SimpleGrantedAuthority>authorities = new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority(user.getRole()));
+                        User user1 = new User(user.getEmail(),user.getPassword(),authorities);
+                 Map<String,String> res = new HashMap<>();
+                 res.put("token",tokenGenerator.token(user1));
+                 res.put("email",userDTO.getEmail());
+                 return Utilities.createSuccessfulResponse("successfully logged in",res);
+            }
+            else {
+                return Utilities.createFailedResponse(404L,"Password Mismatch");
+            }
+        }
     }
 
     public ResponseDTO createUserTypes(UserTypeDTO userTypeDTO) {
