@@ -42,6 +42,9 @@ public class UserServices implements UserDetailsService {
 
 
     public ResponseDTO register(UserDTO userDTO) {
+        if(userRepo.findByEmail(userDTO.getEmail()) != null){
+            return Utilities.createFailedResponse(404L, "User Exists");
+        }
         UserEntity userEntity = new UserEntity();
         userEntity.setName(userDTO.getName());
         userEntity.setEmail(userDTO.getEmail());
@@ -75,6 +78,7 @@ public class UserServices implements UserDetailsService {
     }
     public ResponseDTO login(UserDTO userDTO){
         UserEntity user = userRepo.findByEmail(userDTO.getEmail());
+        log.info(userDTO.getEmail());
         if (user == null){
             return Utilities.createFailedResponse(404L,"User not found");
         }
