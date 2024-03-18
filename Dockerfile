@@ -1,4 +1,4 @@
-FROM eclipse-temurin:20-jdk-alpine
+FROM eclipse-temurin:21
 VOLUME /tmp
 COPY target/*.jar proj.jar
 ENTRYPOINT ["java","-jar","proj.jar"]
