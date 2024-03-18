@@ -19,12 +19,12 @@ public class UserController {
         return "hello enjoy our services";
     }
 
-    @PostMapping("/register/")
+    @PostMapping("/all/register/")
     public ResponseDTO register(@RequestBody UserDTO userDTO){
         log.info("Received a request  to register a user. Payload received:{}",userDTO);
         return userServices.register(userDTO);
     }
-    @PostMapping("/login")
+    @PostMapping("/all/login")
     public ResponseDTO login(UserDTO userDTO){
         return userServices.login(userDTO);
     }
