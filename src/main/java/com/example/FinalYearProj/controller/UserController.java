@@ -24,11 +24,15 @@ public class UserController {
         log.info("Received a request  to register a user. Payload received:{}",userDTO);
         return userServices.register(userDTO);
     }
-    @PostMapping("/createUserTypes")
+    @PostMapping("/login")
+    public ResponseDTO login(UserDTO userDTO){
+        return userServices.login(userDTO);
+    }
+    @PostMapping("/create-User-Types")
     public ResponseDTO createUserType(@RequestBody UserTypeDTO userTypeDTO){
         return userServices.createUserTypes(userTypeDTO);
     }
-    @GetMapping("/getUserTypes")
+    @GetMapping("/get-User-Types")
     public ResponseDTO getUserTypes(){
         return userServices.fetchUserTypes();
     }

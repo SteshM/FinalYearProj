@@ -16,7 +16,7 @@ public class Configurer {
 public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
     return http
             .csrf((csrf)->csrf.disable())
-            .authorizeRequests((authorizeRequests)->authorizeRequests.requests"/all/**").permitAll())
+            .authorizeRequests((authorizeRequests)->authorizeRequests.requests("/all/**").permitAll())
             .http.authorizeRequests((authorizeRequests)->authorizeRequests.anyRequest().authenticated())
             .sessionManagement((sessionManagement)->sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(new CustomAuthorization(), UsernamePasswordAuthenticationFilter.class)
